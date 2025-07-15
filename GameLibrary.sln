@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameLibrary", "GameLibrary\GameLibrary\GameLibrary.csproj", "{7D56C25F-F25D-41C6-A712-E20D51D4BC26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameLibrary.Client", "GameLibrary\GameLibrary.Client\GameLibrary.Client.csproj", "{265EA888-A08F-491D-A676-3CDBADD61E2A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameLibrary.Persistence", "GameLibrary.Persistence\GameLibrary.Persistence.csproj", "{BE889AAD-A46E-4279-89EF-D6544AADBA8D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameLibrary.Domain", "GameLibrary.Domain\GameLibrary.Domain.csproj", "{8A7748F5-2ABC-451A-A211-2F229471C247}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7D56C25F-F25D-41C6-A712-E20D51D4BC26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D56C25F-F25D-41C6-A712-E20D51D4BC26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D56C25F-F25D-41C6-A712-E20D51D4BC26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D56C25F-F25D-41C6-A712-E20D51D4BC26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{265EA888-A08F-491D-A676-3CDBADD61E2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{265EA888-A08F-491D-A676-3CDBADD61E2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{265EA888-A08F-491D-A676-3CDBADD61E2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{265EA888-A08F-491D-A676-3CDBADD61E2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE889AAD-A46E-4279-89EF-D6544AADBA8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE889AAD-A46E-4279-89EF-D6544AADBA8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE889AAD-A46E-4279-89EF-D6544AADBA8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE889AAD-A46E-4279-89EF-D6544AADBA8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A7748F5-2ABC-451A-A211-2F229471C247}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A7748F5-2ABC-451A-A211-2F229471C247}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A7748F5-2ABC-451A-A211-2F229471C247}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A7748F5-2ABC-451A-A211-2F229471C247}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

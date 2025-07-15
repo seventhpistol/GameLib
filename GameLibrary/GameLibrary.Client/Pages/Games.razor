@@ -1,0 +1,56 @@
+﻿@page "/games"
+@using System.Text.Json
+@inject HttpClient Http
+
+<PageTitle>Games</PageTitle>
+
+<h1>Game Library Sample</h1>
+
+<p>This component demonstrates showing data.</p>
+
+@if (games is null)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+
+else
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>ReleaseDate</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var game in games)
+        {
+            <tr>
+                <td>@game.title</td>
+                <td>@game.releaseDate</td>
+                <td>@game.price</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+<p>Want to add a new game?</p>
+
+
+@code{
+    List<GameModel>? games;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // This just resets sometimes, whatever.
+        Http.BaseAddress ??= new Uri("https://localhost:7192");
+
+        games = JsonSerializer.Deserialize<List<GameModel>>(await Http.GetStringAsync("api/games"));
+    }
+
+    private record GameModel(string title, DateOnly releaseDate, decimal price);
+}
