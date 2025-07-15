@@ -1,6 +1,6 @@
 namespace GameLibrary.Domain.Games;
 
-public class Game(Guid id, string title, DateOnly releaseDate, decimal price) : DomainEntity(id)
+public class Game(string title, DateOnly releaseDate, decimal price) : DomainEntity(Guid.NewGuid())
 {
     public string Title { get; } = title;
 

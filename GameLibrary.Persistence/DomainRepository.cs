@@ -27,9 +27,16 @@ public class DomainRepository<T>(GameLibraryDbContext dbContext) : IRepository<T
         return entity;
     }
     
-    public Task DeleteAsync(T entity)
+    public async Task DeleteByIdAsync(Guid id)
     {
+        var entity = await dbContext.Set<T>().FindAsync(id);
+        
+        if (entity is null)
+        {
+            return;
+        }
+        
         dbContext.Set<T>().Remove(entity);
-        return Task.CompletedTask;
+        await dbContext.SaveChangesAsync();
     }
 }
