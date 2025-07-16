@@ -11,6 +11,10 @@ public static class GameControllerRegistration
         
         app.MapGet(basePattern, async ([FromServices] IRepository<GameLibrary.Domain.Games.Game> repository) => await repository.GetAllAsync());
 
+        app.MapGet(basePattern + "/{id:guid}",
+            async (Guid id, [FromServices] IRepository<GameLibrary.Domain.Games.Game> repository) =>
+            await repository.GetByIdAsync(id));
+
         app.MapPost(basePattern, async Task ([FromBody] GameResource gameResource, [FromServices] IRepository<GameLibrary.Domain.Games.Game> repository) => 
             await repository.CreateAsync(new Domain.Games.Game(gameResource.Title, gameResource.ReleaseDate, gameResource.Price)));
 

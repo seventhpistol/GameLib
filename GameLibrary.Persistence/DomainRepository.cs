@@ -6,7 +6,7 @@ namespace GameLibrary.Persistence;
 
 public class DomainRepository<T>(GameLibraryDbContext dbContext) : IRepository<T> where T : DomainEntity
 {
-    public async Task<T?> GetByIdAsync(Guid id) => await dbContext.Set<T>().SingleOrDefaultAsync(e => e.Id == id);
+    public async Task<T?> GetByIdAsync(Guid id) => await dbContext.Set<T>().FindAsync(id);
 
     public async Task<IEnumerable<T>?> GetAllAsync() => await dbContext.Set<T>().ToListAsync();
 
@@ -29,11 +29,11 @@ public class DomainRepository<T>(GameLibraryDbContext dbContext) : IRepository<T
     
     public async Task DeleteByIdAsync(Guid id)
     {
-        var entity = await dbContext.Set<T>().FindAsync(id);
+        var entity = await GetByIdAsync(id);
         
         if (entity is null)
         {
-            return;
+            throw new InvalidOperationException($"Entity with id {id} was not found");
         }
         
         dbContext.Set<T>().Remove(entity);

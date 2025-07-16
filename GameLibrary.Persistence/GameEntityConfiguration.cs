@@ -11,7 +11,8 @@ public class GameEntityConfiguration : IEntityTypeConfiguration<Game>
         builder.HasKey(g => g.Id);
         builder.Property(g => g.Id).ValueGeneratedNever();
         builder.Property(g => g.Title).IsRequired();
-        builder.Property(g => g.Price).IsRequired().HasPrecision(2);
+        builder.Property(g => g.Price).IsRequired().HasPrecision(5,2);
         builder.Property(g => g.ReleaseDate).IsRequired();
+        builder.Property(g => g.Version).IsConcurrencyToken();
     }
 }

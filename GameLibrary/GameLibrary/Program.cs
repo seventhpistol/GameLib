@@ -8,7 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorComponents().AddInteractiveWebAssemblyComponents();
 builder.Services.AddHttpClient();
-builder.Services.AddDbContext<GameLibraryDbContext>(options => options.UseSqlite("Data Source=GameLibrary.db"));
+builder.Services.AddDbContext<GameLibraryDbContext>(options => 
+    options.UseNpgsql("Server=localhost;User Id=postgres;Password=pgadmin1;Database=gamelib"));
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(DomainRepository<>));
 

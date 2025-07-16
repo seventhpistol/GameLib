@@ -3,6 +3,7 @@ using System;
 using GameLibrary.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace GameLibrary.Persistence.Migrations
 {
     [DbContext(typeof(GameLibraryDbContext))]
-    partial class GameLibraryDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250716123546_PriceFieldAdjust")]
+    partial class PriceFieldAdjust
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
