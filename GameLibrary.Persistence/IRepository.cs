@@ -13,5 +13,5 @@ public interface IRepository<T> where T : IDomainEntity
     
     Task<T?> CreateAsync(T entity);
     
-    Task DeleteAsync(T entity);
+    Task DeleteByIdAsync(Guid id);
 }

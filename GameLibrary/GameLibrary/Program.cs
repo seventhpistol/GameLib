@@ -9,9 +9,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents().AddInteractiveWebAssemblyComponents();
 builder.Services.AddHttpClient();
 builder.Services.AddDbContext<GameLibraryDbContext>(options => 
-    options.UseSqlite("Data Source=GameLibrary.db"));
+    options.UseNpgsql("Server=localhost;User Id=postgres;Password=pgadmin1;Database=gamelib"));
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(DomainRepository<>));
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
@@ -19,6 +22,12 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseWebAssemblyDebugging();
+    app.UseSwagger();
+    app.UseSwaggerUI(o =>
+    {
+        o.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+        o.RoutePrefix = "apiExplorer";
+    });
 }
 else
 {

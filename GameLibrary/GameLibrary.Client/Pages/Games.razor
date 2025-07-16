@@ -32,25 +32,67 @@ else
                 <td>@game.title</td>
                 <td>@game.releaseDate</td>
                 <td>@game.price</td>
+                <td><button @onclick="() => DeleteGame(game.id!.Value)">Delete</button></td>
             </tr>
         }
         </tbody>
     </table>
 }
 
+<button @onclick="ReloadGames">Reload games</button>
+
 <p>Want to add a new game?</p>
 
+<div>
+    <label>Title:</label>
+    <input type="text" @bind="title"/>
+</div>
+<div>
+    <label>Release date:</label>
+    <input type="date" @bind="releaseDate"/>
+</div>
+<div>
+    <label>Price:</label>
+    <input type="number" @bind="price"/>
+</div>
 
+<button @onclick="Add">Save</button>
 @code{
     List<GameModel>? games;
+    private string title;
+    private DateOnly releaseDate;
+    private decimal price;
 
     protected override async Task OnInitializedAsync()
     {
         // This just resets sometimes, whatever.
         Http.BaseAddress ??= new Uri("https://localhost:7192");
+        await LoadGamesAsync();
+    }
 
+    private async Task Add()
+    {
+        await Http.PostAsync("api/games", JsonContent.Create(new GameModel(null, title, releaseDate, price)));
+        await ReloadGames();
+    }
+
+    private async Task ReloadGames()
+    {
+        await LoadGamesAsync();
+        StateHasChanged();
+    }
+
+    private async Task LoadGamesAsync()
+    {
         games = JsonSerializer.Deserialize<List<GameModel>>(await Http.GetStringAsync("api/games"));
     }
 
-    private record GameModel(string title, DateOnly releaseDate, decimal price);
+    private async Task DeleteGame(Guid id)
+    {
+        await Http.DeleteAsync($"api/games/{id}");
+        games = games.Where(x => x.id != id).ToList();
+        StateHasChanged();
+    }
+
+    private record GameModel(Guid? id, string title, DateOnly releaseDate, decimal price);
 }
